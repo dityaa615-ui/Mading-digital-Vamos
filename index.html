@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mading Digital Interaktif - SMAN 2 Mengwi</title>
+    
+    <!-- Google Fonts - Optimized for mobile -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+                        url('https://i.pinimg.com/1200x/48/7e/8a/487e8a7019ba7f896540017fbfe8cddc.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            position: relative;
+            padding-top: 70px;
+            overflow-x: hidden;
+        }
+
+        /* ================= MOBILE-FIRST LOGO ================= */
+        .logo-corner {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 12px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 180px;
+            height: 50px;
+        }
+
+        .team-logo-corner {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 12px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 180px;
+            height: 50px;
+        }
+
+        .school-logo, .team-logo {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .team-logo {
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .school-info, .team-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .school-name, .team-name {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFD974;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .school-motto, .team-handle {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* HIDE LOGO TEXT ON VERY SMALL PHONES */
+        @media (max-width: 360px) {
+            .school-info, .team-info {
+                display: none;
+            }
+            .logo-corner, .team-logo-corner {
+                padding: 8px;
+                max-width: 60px;
+            }
+        }
+
+        /* ================= MAIN CONTENT ================= */
+        .overlay {
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 25px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(6px);
+            animation: fade 0.6s ease;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= WEBSITE TITLE ================= */
+        .website-title {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 3;
+        }
+
+        .website-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: #FFD974;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .website-title p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* ================= SALAM REDAKSI ================= */
+        .salam-redaksi {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            line-height: 1.7;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .salam-redaksi h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #FFD974;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+            font-weight: 700;
+        }
+
+        .salam-redaksi p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            letter-spacing: 0.3px;
+            text-align: justify;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.4px;
+            font-size: 16px;
+            color: #FFD974;
+        }
+
+        /* ================= MOBILE-FRIENDLY MENU ================= */
+        .menu-section {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .menu-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .menu-links button {
+            padding: 14px 10px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            word-break: break-word;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 3;
+        }
+
+        .menu-links button:hover,
+        .menu-links button:active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-links button.active {
+            background: rgba(255, 255, 255, 0.35);
+            font-weight: bold;
+        }
+
+        /* ================= CONTENT SECTIONS ================= */
+        .berita-header,
+        .opini-header,
+        .artikel-header,
+        .puisi-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            z-index: 3;
+        }
+
+        .berita-header h1,
+        .opini-header h1,
+        .artikel-header h1,
+        .puisi-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            letter-spacing: 1px;
+            color: #FFD974;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .kisah-content,
+        .opini-content,
+        .artikel-content {
+            line-height: 1.7;
+            font-size: 17px;
+            text-align: justify;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 3;
+        }
+
+        .kisah-content p,
+        .opini-content p,
+        .artikel-content p {
+            margin-bottom: 18px;
+            text-indent: 1.5em;
+        }
+
+        .highlight,
+        .opini-highlight,
+        .artikel-highlight {
+            color: #FFD974;
+            font-weight: 600;
+        }
+
+        /* ================= ARTICLE LIST ================= */
+        .artikel-list {
+            margin: 20px 0;
+            padding-left: 25px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .artikel-list li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .sumber {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            font-style: italic;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ================= PHOTO CONTAINER ================= */
+        .photo-container {
+            margin: 25px 0;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .photo-container img {
+            max-width: 95%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 217, 116, 0.4);
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container img:hover {
+            transform: scale(1.01);
+        }
+
+        .photo-caption {
+            margin-top: 12px;
+            font-size: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* ================= TIM REDAKSI HEADER ================= */
+        .tim-redaksi-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            z-index: 3;
+        }
+
+        .tim-redaksi-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: #FFD974;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tim-redaksi-subtitle {
+            font-size: 17px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        /* ================= PUISI ================= */
+        .puisi-content {
+            max-width: 100%;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 3;
+        }
+
+        .puisi-bait {
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .puisi-line {
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .puisi-highlight {
+            color: #FFD974;
+            font-weight: 600;
+        }
+
+        .puisi-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: #FFD974;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .puisi-author {
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            padding-top: 15px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ================= QUIZ ================= */
+        .materi-simple {
+            text-align: center;
+            line-height: 1.7;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 3;
+        }
+
+        .materi-simple h1 {
+            margin-bottom: 12px;
+            font-size: 26px;
+            font-family: 'Cinzel', serif;
+            color: #FFD974;
+        }
+
+        .materi-simple p {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .quiz-box {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 17px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .quiz-box > div:first-child {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #FFD974;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .quiz-options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+            text-align: left;
+            min-height: 54px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-options button:hover,
+        .quiz-options button:active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            font-family: 'Cinzel', serif;
+            min-height: 24px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* ================= BACK BUTTON ================= */
+        .back-btn {
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .back-btn button {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            transition: all 0.2s;
+            min-width: 150px;
+            min-height: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .back-btn button:hover,
+        .back-btn button:active {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media (min-width: 481px) {
+            body {
+                padding-top: 80px;
+            }
+            
+            .logo-corner,
+            .team-logo-corner {
+                max-width: 220px;
+                height: 55px;
+                padding: 10px 15px;
+            }
+            
+            .school-logo,
+            .team-logo {
+                height: 40px;
+            }
+            
+            .school-name,
+            .team-name {
+                font-size: 14px;
+            }
+            
+            .school-motto,
+            .team-handle {
+                font-size: 11px;
+            }
+            
+            .website-title h1 {
+                font-size: 28px;
+            }
+            
+            .website-title p {
+                font-size: 16px;
+            }
+            
+            .menu-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            
+            .page {
+                padding: 30px 25px;
+            }
+            
+            .salam-redaksi {
+                padding: 30px;
+            }
+            
+            .salam-redaksi h2 {
+                font-size: 32px;
+            }
+            
+            .salam-redaksi p {
+                font-size: 18px;
+            }
+            
+            .photo-caption {
+                font-size: 16px;
+            }
+            
+            .tim-redaksi-header h1 {
+                font-size: 32px;
+            }
+            
+            .tim-redaksi-subtitle {
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            body {
+                padding-top: 0;
+            }
+            
+            .logo-corner {
+                top: 20px;
+                left: 20px;
+                max-width: 280px;
+                height: 60px;
+                padding: 12px 18px;
+            }
+            
+            .team-logo-corner {
+                top: 20px;
+                right: 20px;
+                max-width: 280px;
+                height: 60px;
+                padding: 12px 18px;
+            }
+            
+            .school-logo,
+            .team-logo {
+                height: 45px;
+            }
+            
+            .school-name,
+            .team-name {
+                font-size: 16px;
+            }
+            
+            .school-motto,
+            .team-handle {
+                font-size: 12px;
+            }
+            
+            .website-title h1 {
+                font-size: 32px;
+                margin-top: 0;
+            }
+            
+            .menu-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .menu-links button {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .page {
+                margin-top: 0;
+                padding: 40px;
+            }
+            
+            .kisah-content,
+            .opini-content,
+            .artikel-content {
+                font-size: 19px;
+                max-width: 900px;
+            }
+            
+            .puisi-content {
+                font-size: 20px;
+                max-width: 800px;
+            }
+            
+            .puisi-title {
+                font-size: 26px;
+            }
+            
+            .photo-container {
+                margin: 30px auto;
+            }
+            
+            .photo-container img {
+                max-width: 90%;
+                border-width: 4px;
+            }
+            
+            .photo-caption {
+                font-size: 17px;
+                margin-top: 15px;
+            }
+            
+            .tim-redaksi-header h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+            
+            .tim-redaksi-subtitle {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .menu-links {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .menu-links button {
+                padding: 18px 12px;
+            }
+            
+            .photo-container img {
+                max-width: 85%;
+            }
+            
+            .tim-redaksi-header h1 {
+                font-size: 38px;
+            }
+        }
+
+        /* ================= UTILITY CLASSES ================= */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        /* ================= ACCESSIBILITY ================= */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        button:focus,
+        button:focus-visible {
+            outline: 2px solid #FFD974;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ================= LOGO SMAN 2 MENGWI ================= -->
+    <div class="logo-corner" aria-label="Logo SMAN 2 Mengwi">
+        <img src="https://www.dbl.id/uploads/school/28026/712-SMAN_2_MENGWI.png" 
+             alt="Logo SMAN 2 Mengwi" 
+             class="school-logo">
+        <div class="school-info">
+            <div class="school-name">SMAN 2 MENGWI</div>
+            <div class="school-motto">Madya Digital Interaktif</div>
+        </div>
+    </div>
+
+    <!-- ================= LOGO TIM REDAKSI ================= -->
+    <div class="team-logo-corner" aria-label="Logo Tim Redaksi">
+        <img src="https://i.postimg.cc/478STBfN/Whats-App-Image-2026-02-03-at-07-49-04.jpg" 
+             alt="Logo Vamos23 Official" 
+             class="team-logo">
+        <div class="team-info">
+            <div class="team-name">Tim Redaksi</div>
+            <div class="team-handle">@vamos23_ofc</div>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <!-- ================= HOME ================= -->
+        <div id="page1" class="page active">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="salam-redaksi">
+                <h2>SALAM REDAKSI</h2>
+                <p>Cinta tidak selalu hadir dalam bentuk yang dapat disentuh. Ia sering menjelma sebagai rasa diam, namun menentukan; tak terlihat, tetapi menghidupkan. Kisah Dewa Kama dan Dewi Ratih kami hadirkan bukan sekadar sebagai legenda pewayangan, melainkan sebagai cermin perenungan tentang hakikat cinta itu sendiri.</p>
+                <p>Di tengah zaman yang serba cepat dan bising, kisah ini mengajak kita untuk kembali pada makna paling sunyi dari cinta: bahwa yang paling abadi sering kali justru yang tak kasatmata.</p>
+                <p>Melalui narasi, ilustrasi, dan tafsir yang kami sajikan, redaksi berharap pembaca tidak hanya mengenal Kama dan Ratih sebagai tokoh mitologis, tetapi juga menemukan pantulan kisah mereka dalam pengalaman manusia modern—tentang kehilangan, kesetiaan, dan rasa yang tetap hidup meski wujud telah tiada.</p>
+                <p>Akhir kata, semoga karya ini menjadi ruang hening bagi pembaca untuk merenung, memahami, dan merawat cinta dengan cara yang lebih arif.</p>
+                <div class="signature">
+                    Tim Redaksi<br>
+                    @vamos23_ofc
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-links">
+                    <button data-page="page2" aria-label="Buka Berita Utama">Berita Utama</button>
+                    <button data-page="page3" aria-label="Buka Opini">Opini</button>
+                    <button data-page="page4" aria-label="Buka Artikel">Artikel</button>
+                    <button data-page="page5" aria-label="Buka Puisi">Puisi</button>
+                    <button data-page="page6" aria-label="Buka Tim Redaksi">Tim Redaksi</button>
+                    <button data-page="page7" aria-label="Buka Quiz">Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= MATERI 1 - BERITA UTAMA ================= -->
+        <div id="page2" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="berita-header">
+                <h1>BERITA UTAMA</h1>
+                <div class="subtitle">Kisah Lengkap Sang Hyang Semara Ratih dari Lontar Cundamani II</div>
+            </div>
+
+            <div class="kisah-content">
+                <p>Dalam mitologi tentang <span class="highlight">Sang Hyang Semara Ratih</span>, yang merupakan sepasang dewa dewi sebagai simbol cinta kasih yang penuh dengan keinginan dan kesetiaan serta pengorbanan. Diceritakan kisahnya dalam lontar cundamani II.</p>
+                
+                <p>Dalam kutipan tersebut diceritakan bahwa sorga sedang diserang oleh <span class="highlight">raksasa Nilarudraka</span>, seorang raksasa yang sakti ingin menguasai sorga. Para dewa-dewa semuanya kalah tidak ada yang sanggup melawannya.</p>
+                
+                <p>Akhirnya para dewa-dewa datang menghadap <span class="highlight">Bhagawan Wraspati</span> untuk menanyakan dan meramalkan siapa yang akan sanggup mengalahkan raksasa tersebut. Akhirnya hasil ramalan ternyata bahwa raksasa Nilarudraka hanya akan dapat dikalahkan oleh putranya Dewa Siwa yang berkepala gajah.</p>
+                
+                <p>Ternyata pada saat itu <span class="highlight">Bhatara Siwa</span> belum berputra di samping itu beliau sedang bersemadi (bertapa), yang tidak ada seorang pun yang berani untuk mengganggunya. Sehingga ditugaskanlah <span class="highlight">Dewa Kama</span> untuk menggoda dan membangunkan Dewa Siwa.</p>
+                
+                <p>Walaupun tugas tersebut penuh resiko, namun tetap dilaksanakan oleh Dewa Kama, demi kepentingan para Dewa-Dewa semua dan sorga yang sedang terancam. Ketika sampai di <span class="highlight">Gunung Kailasa</span>, tempat Dewa Siwa bertapa dan setelah sampai di tempat tersebut Dewa Kama pun lalu melepaskan panahnya yang mengenai dada Dewa Siwa. Akhirnya beliau terbangun dan tak pelak marahlah beliau dan kemudian dengan sorotan mata yang penuh api akhirnya Dewa Siwa membakar dan membunuh Dewa Kama tersebut.</p>
+                
+                <p>Wafatnya Dewa Kama maka sebagai tanda setia kepada suami maka <span class="highlight">Dewi Ratih</span> pun memohon kepada Dewa Siwa agar dirinya dibakar juga karena ingin mengalami nasib yang sama dengan suaminya, lantas permohonan itu dikabulkan oleh Dewa Siwa sehingga untuk kedua kalinya keluar api yang membakar hangus Dewi Ratih.</p>
+                
+                <p>Karena panah yang dilepaskan adalah panah asmara, maka membuat Dewa Siwa yang sedang bersemadi tergoyah hatinya, tiba-tiba rindu kepada <span class="highlight">Dewi Uma</span>, akhirnya bertemulah beliau. Pertemuan ini menyebabkan mengandungnya Dewi Uma.</p>
+                
+                <p>Pada saat Dewi Uma dan Dewa Siwa berjalan-jalan di puncak gunung Kailasa, maka dijumpailah oleh Dewi Uma onggokan abu dan Dewi Uma pun bertanya kepada Dewa Siwa, menanyakan abu apa sebenarnya itu?. Dewa Siwa pun menjelaskan bagaimana bisa terjadi gundukan abu tersebut, yang tidak lain merupakan jazad dari Dewa Kama dan Dewi Ratih.</p>
+                
+                <p>Setelah mendengar cerita dari Dewa Siwa itu, maka Dewi Uma pun meminta Dewa Siwa agar kedua Dewa tersebut dihidupkan lagi, karena kedua dewa tersebut di samping bermaksud baik juga karena panah Dewa Kamalah yang menyebabkan pertemuan antara Dewa Siwa dengan Bhatara Uma, andaikata tidak, maka Dewa Siwa pun mungkin tidak merindukan Dewi Uma.</p>
+                
+                <p>Atas permohonan Dewi Uma maka Dewa Siwa pun mengabulkan permintaan tersebut namun dengan catatan bahwa Dewa Kama dan Dewi Ratih tidak bisa dihidupkan lagi di sorga. Oleh karena itu ditaburkanlah oleh Dewa Siwa dan Dewi Uma, bersama-sama abu dari Dewa Kama dan Dewi Ratih itu ke dunia mayapada, dengan perintah agar jiwa Dewa Kama dan Dewi Ratih hidup di dunia dan memasuki lubuk hati setiap insan, sehingga timbullah rasa saling cinta mencintai.</p>
+                
+                <p>Demikianlah jiwa Dewi Ratih yang menginsani setiap makhluk yang berbentuk wanita (betina) sedangkan Dewa Kama yang menginsani lubuk hati setiap pria (jantan). Karena itulah pria dan wanita saling rindu merindukan karena berasal dari jiwanya Dewa Kama dan Dewi Ratih.</p>
+                
+                <p>Sehingga dalam beberapa simbolisasi cinta kasih Sang Hyang Semara Ratih ini disebutkan sebagai berikut :</p>
+            </div>
+            
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali</button>
+            </div>
+        </div>
+
+        <!-- ================= MATERI 2 - OPINI ================= -->
+        <div id="page3" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="opini-header">
+                <h1>OPINI</h1>
+                <div class="subtitle">Refleksi atas Makna Cinta dalam Kisah Kama dan Ratih</div>
+            </div>
+
+            <div class="opini-content">
+                <p>Bagi kami, kisah Dewa Kama dan Dewi Ratih bukan sekadar legenda cinta dalam pewayangan, melainkan tafsir mendalam tentang bagaimana manusia seharusnya memahami rasa. Di dalam cerita ini, cinta tidak dimenangkan oleh keberadaan raga, melainkan oleh kesanggupan untuk bertahan dalam kehilangan.</p>
+                
+                <p><span class="opini-highlight">Dewa Kama</span> yang musnah oleh api kesadaran Dewa Siwa justru menemukan bentuk cintanya yang paling murni: hadir tanpa wujud, hidup sebagai rasa. Di titik inilah kisah ini menjadi sangat relevan dengan kehidupan hari ini. Di tengah budaya yang kerap mengukur cinta melalui kepemilikan, pengakuan, dan kehadiran fisik, Kama–Ratih mengajarkan bahwa cinta sejati tidak selalu tampak, namun selalu bekerja.</p>
+                
+                <p><span class="opini-highlight">Dewi Ratih</span>, dalam kesetiaannya, memberi teladan bahwa mencintai tidak berarti menuntut untuk selalu memiliki. Ia memilih tetap setia meski yang dicintai tak lagi dapat digenggam. Bagi redaksi, sikap ini adalah kritik halus terhadap relasi modern yang rapuh oleh absensi dan mudah runtuh oleh jarak. Ratih mengajarkan bahwa cinta bukan tentang siapa yang hadir secara fisik, melainkan siapa yang tetap tinggal dalam kesadaran.</p>
+                
+                <p>Kami memandang kisah ini sebagai pengingat bahwa cinta, pada hakikatnya, adalah tanggung jawab batin. Ia menuntut kedewasaan untuk menerima kehilangan, keberanian untuk berkorban, dan keikhlasan untuk tidak menjadikan rasa sebagai alat penguasaan. Kama yang hidup di hati setiap makhluk adalah simbol bahwa cinta yang matang tidak menuntut pengakuan, tetapi memberi kehidupan.</p>
+                
+                <p>Melalui kisah ini, redaksi percaya bahwa pewayangan bukan peninggalan masa lalu, melainkan warisan pemikiran yang terus berbicara pada zaman apa pun. Kama dan Ratih mengajarkan kita untuk mencintai dengan kesadaran, bukan kelekatan; dengan ketulusan, bukan tuntutan.</p>
+                
+                <p>Dan mungkin, di situlah cinta menemukan keabadiannya.</p>
+            </div>
+            
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali</button>
+            </div>
+        </div>
+
+        <!-- ================= MATERI 3 - ARTIKEL ================= -->
+        <div id="page4" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="artikel-header">
+                <h1>ARTIKEL</h1>
+                <div class="subtitle">Simbolisasi Sang Hyang Semara Ratih dalam Upacara Hindu Bali</div>
+            </div>
+
+            <div class="artikel-content">
+                <p>Dalam tradisi Hindu Bali, <span class="artikel-highlight">Sang Hyang Semara Ratih</span> memiliki peranan penting dalam berbagai upacara adat dan keagamaan. Kisah tentang dewa dewi cinta ini tidak hanya sekadar mitologi, tetapi juga memiliki implementasi praktis dalam kehidupan beragama masyarakat Bali.</p>
+                
+                <p>Seperti yang tercatat dalam Lontar Cundamani II, kisah tentang pengorbanan <span class="artikel-highlight">Dewa Kama</span> dan kesetiaan <span class="artikel-highlight">Dewi Ratih</span> menjadi landasan filosofis untuk memahami hakikat cinta dan pengorbanan dalam hubungan manusia.</p>
+                
+                <p>Berdasarkan sumber dari inputbali.com, berikut adalah beberapa simbolisasi dan implementasi Sang Hyang Semara Ratih dalam upacara-upacara Hindu Bali:</p>
+                
+                <ul class="artikel-list">
+                    <li><span class="artikel-highlight">Sanggah Surya</span> pada saat mekala-kalaan (mabeakala) ring upacara pawiwahan merupakan niyasa (simbol) sebagai stananya Dewa Surya dan Sang Hyang Semara Ratih.</li>
+                    
+                    <li>Dalam urut-urutan upacara <span class="artikel-highlight">metatah</span> yang awal pelaksanaanya dilaksanakan sembahyang kepada Bhatara Surya dan kepada Bhatara Sang Hyang Semara Ratih dan juga mohon tirtha kepada beliau berdua.</li>
+                    
+                    <li><span class="artikel-highlight">Ngetok sunduk</span> yang juga merupakan awal dari pelaksanaan upacara pemakuhan dalam pendirian rumah baru yang akan ditempati disebutkan mantra tersebut bertujuan untuk ngadegang Bhatara Semara Ratih metemuang ageni mastu astu Ang Ah.</li>
+                </ul>
+                
+                <p>Simbolisasi ini menunjukkan bahwa konsep cinta yang diwakili oleh Sang Hyang Semara Ratih bukan hanya abstrak, tetapi juga konkret dalam kehidupan sehari-hari masyarakat Bali. Setiap upacara yang melibatkan simbol ini mengingatkan umat tentang pentingnya cinta, kesetiaan, dan pengorbanan dalam membangun hubungan yang harmonis.</p>
+                
+                <p>Dalam upacara pernikahan (pawiwahan), kehadiran Sang Hyang Semara Ratih menjadi doa agar pasangan yang menikah diberikan cinta yang abadi seperti cinta Kama dan Ratih. Sedangkan dalam upacara potong gigi (metatah), permohonan kepada Sang Hyang Semara Ratih merupakan doa agar individu tersebut dapat mengendalikan hawa nafsu dan mengarahkan cintanya kepada hal-hal yang spiritual.</p>
+                
+                <p>Demikianlah, kisah Sang Hyang Semara Ratih terus hidup dan relevan dalam tradisi Hindu Bali, mengajarkan nilai-nilai luhur tentang cinta sejati, kesetiaan, dan pengorbanan yang diperlukan dalam membangun hubungan yang harmonis baik dengan sesama manusia maupun dengan Tuhan.</p>
+                
+                <div class="sumber">
+                    Sumber: inputbali.com
+                </div>
+            </div>
+            
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali</button>
+            </div>
+        </div>
+
+        <!-- ================= MATERI 4 - PUISI ================= -->
+        <div id="page5" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="puisi-header">
+                <h1>PUISI</h1>
+                <div class="subtitle">Cinta sebagai Kehadiran yang Tak Terlihat</div>
+            </div>
+
+            <div class="puisi-content">
+                <div class="puisi-title">Cinta Abadi</div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line">Di kahyangan</div>
+                    <div class="puisi-line">cinta pernah memiliki tubuh,</div>
+                    <div class="puisi-line">busur yang lentur,</div>
+                    <div class="puisi-line">dan panah yang tak melukai.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line"><span class="puisi-highlight">Samara</span> melepaskan asmara</div>
+                    <div class="puisi-line">bukan demi dirinya,</div>
+                    <div class="puisi-line">melainkan demi semesta</div>
+                    <div class="puisi-line">yang retak oleh sunyi.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line">Api mata ketiga</div>
+                    <div class="puisi-line">membakar raga,</div>
+                    <div class="puisi-line">namun tak pernah mampu</div>
+                    <div class="puisi-line">menghabisi rasa.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line"><span class="puisi-highlight">Ratih</span> berdiri</div>
+                    <div class="puisi-line">di antara abu dan doa,</div>
+                    <div class="puisi-line">mencintai bukan dengan genggaman,</div>
+                    <div class="puisi-line">melainkan dengan kesetiaan yang hening.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line">Ia tahu—</div>
+                    <div class="puisi-line">cinta sejati</div>
+                    <div class="puisi-line">tidak selalu tinggal,</div>
+                    <div class="puisi-line">kadang hanya berdiam</div>
+                    <div class="puisi-line">dalam ingatan dan kesadaran.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line">Sejak itu</div>
+                    <div class="puisi-line"><span class="puisi-highlight">Samara</span> hidup tanpa bayangan,</div>
+                    <div class="puisi-line">menjelma getar di dada manusia,</div>
+                    <div class="puisi-line">menjadi rindu yang tak bernama.</div>
+                </div>
+                
+                <div class="puisi-bait">
+                    <div class="puisi-line">Dan <span class="puisi-highlight">Ratih</span>,</div>
+                    <div class="puisi-line">tetap mencintai</div>
+                    <div class="puisi-line">tanpa menuntut kehadiran,</div>
+                    <div class="puisi-line">sebab cinta</div>
+                    <div class="puisi-line">tak membutuhkan wujud</div>
+                    <div class="puisi-line">untuk menjadi abadi.</div>
+                </div>
+                
+                <div class="puisi-author">
+                    — Karya: Tim Redaksi @vamos23_ofc
+                </div>
+            </div>
+            
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali</button>
+            </div>
+        </div>
+
+        <!-- ================= TIM REDAKSI ================= -->
+        <div id="page6" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="tim-redaksi-header">
+                <h1>TIM REDAKSI</h1>
+                <div class="tim-redaksi-subtitle">Profil dan Foto Tim Vamos23 Official</div>
+            </div>
+            
+            <!-- Foto yang ditambahkan -->
+            <div class="photo-container">
+                <img src="https://i.postimg.cc/8s7w7GHq/Whats-App-Image-2026-02-06-at-21-54-09.jpg" 
+                     alt="Foto Tim Redaksi Vamos23 Official">
+                <p class="photo-caption">Tim Redaksi @vamos23_ofc - Kreator Mading Digital Interaktif</p>
+            </div>
+            
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali</button>
+            </div>
+        </div>
+
+        <!-- ================= QUIZ ================= -->
+        <div id="page7" class="page">
+            <div class="website-title">
+                <h1>KISAH SANG HYANG SEMARA RATIH</h1>
+                <p>Mading Digital Interaktif - Menjelajahi Makna Cinta dalam Pewayangan</p>
+            </div>
+
+            <div class="materi-simple">
+                <h1>QUIZ AKHIR</h1>
+                <p>Uji pemahamanmu tentang kisah Kama Ratih</p>
+            </div>
+
+            <div class="quiz-box">
+                <div>1. Apa nilai utama kisah Kama Ratih?</div>
+                <div class="quiz-options">
+                    <button onclick="checkAnswer(this, false)" aria-label="Pilih jawaban: Keindahan fisik">Keindahan fisik</button>
+                    <button onclick="checkAnswer(this, true)" aria-label="Pilih jawaban: Kesetiaan dan ketulusan">Kesetiaan dan ketulusan</button>
+                    <button onclick="checkAnswer(this, false)" aria-label="Pilih jawaban: Kekuasaan">Kekuasaan</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+
+            <div class="quiz-box">
+                <div>2. Pesan moral utama cerita ini adalah?</div>
+                <div class="quiz-options">
+                    <button onclick="checkAnswer(this, false)" aria-label="Pilih jawaban: Kekayaan">Kekayaan</button>
+                    <button onclick="checkAnswer(this, true)" aria-label="Pilih jawaban: Cinta sejati dan pengorbanan">Cinta sejati dan pengorbanan</button>
+                    <button onclick="checkAnswer(this, false)" aria-label="Pilih jawaban: Popularitas">Popularitas</button>
+                </div>
+                <div class="quiz-result"></div>
+            </div>
+
+            <div class="back-btn">
+                <button data-page="page1" aria-label="Kembali ke halaman utama">⬅ Kembali ke Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation system
+        const buttons = document.querySelectorAll('button[data-page]');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-page');
+
+                document.querySelectorAll('.page').forEach(p => {
+                    p.classList.remove('active');
+                });
+
+                const target = document.getElementById(id);
+                if (target) {
+                    target.classList.add('active');
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Quiz system
+        function checkAnswer(btn, correct) {
+            const result = btn.parentElement.parentElement.querySelector('.quiz-result');
+
+            // Reset all buttons in this question
+            const buttons = btn.parentElement.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.style.backgroundColor = '';
+                b.style.transform = '';
+            });
+
+            // Style the clicked button
+            if (correct) {
+                btn.style.backgroundColor = 'rgba(124, 255, 124, 0.3)';
+                btn.style.transform = 'scale(0.98)';
+                result.innerHTML = '✅ Jawaban benar!';
+                result.style.color = '#7CFF7C';
+            } else {
+                btn.style.backgroundColor = 'rgba(255, 124, 124, 0.3)';
+                btn.style.transform = 'scale(0.98)';
+                result.innerHTML = '❌ Jawaban salah, coba lagi';
+                result.style.color = '#FF7C7C';
+            }
+        }
+
+        // Mobile touch improvements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add touch feedback for all buttons
+            const allButtons = document.querySelectorAll('button');
+            allButtons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Prevent zoom on double tap
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        });
+
+        // Handle keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('page1').classList.add('active');
+                document.querySelectorAll('.page:not(#page1)').forEach(p => {
+                    p.classList.remove('active');
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
